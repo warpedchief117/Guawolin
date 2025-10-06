@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body class="register-page">
+  <div class="overlay">
+    <div class="register-container">
+      <h2>Crear cuenta</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrarse</button>
+      </form>
+      <p class="login-legend">
+        ¿Ya tienes cuenta? <a href="{% url 'login' %}" class="login-link">Inicia sesión</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+

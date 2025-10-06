@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú Principal – El Baile de las Sombras</title>
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body class="dashboard-page">
+  <header class="main-header">
+    <h1 class="logo"> El Baile de las Sombras</h1>
+    <nav class="main-nav">
+        <a href="{% url 'comprar' %}">Comprar</a>
+        <a href="{% url 'concursos' %}">Concursos</a>
+        <a href="{% url 'noticias' %}">Noticias</a>
+        <a href="{% url 'foro' %}">Foro</a>
+    </nav>
+  </header>
+
+  <main class="interactive-zone">
+    <section class="recommendations">
+      <h2>🎭 Recomendaciones de Disfraces</h2>
+      <div class="costume-grid">
+        <!-- Aquí puedes insertar tarjetas con disfraces -->
+        <div class="costume-card">
+          <img src="{% static 'img/vampiro.png' %}" alt="Vampiro">
+          <p>Vampiro clásico</p>
+        </div>
+        <div class="costume-card">
+          <img src="{% static 'img/bruja.png' %}" alt="Bruja">
+          <p>Bruja encantada</p>
+        </div>
+        <!-- Más tarjetas -->
+      </div>
+    </section>
+
+    <section class="event-info">
+      <h2>📜 Información del Evento</h2>
+      <p>El evento se llevará a cabo el 31 de octubre en el Teatro de las Sombras, CDMX. Habrá concursos, música en vivo, zona de maquillaje, y más sorpresas.</p>
+    </section>
+  </main>
+</body>
+</html>
