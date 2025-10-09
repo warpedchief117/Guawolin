@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'guawolin/home.html')
 
 @login_required
 def purchase_ticket(request):
@@ -32,7 +32,7 @@ def my_tickets(request):
 
 def register(request):
     form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'guawolin/register.html', {'form': form})
 
 @login_required
 def dashboard_view(request):
