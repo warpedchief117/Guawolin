@@ -10,10 +10,19 @@
 
       <!-- Enlaces rápidos -->
       <div class="flex space-x-6">
-        <a href="{% url 'home' %}" class="hover:text-white transition">Inicio</a>
-        <a href="{% url 'dashboard' %}" class="hover:text-white transition">Eventos</a>
-        <a href="{% url 'register' %}" class="hover:text-white transition">Registrarse</a>
-        <a href="{% url 'login' %}" class="hover:text-white transition">Iniciar sesión</a>
+        {% if not user.is_authenticated %}
+          <a href="{% url 'home' %}" class="hover:text-white transition">Inicio</a>
+          <a href="{% url 'register_organizer' %}" class="hover:text-white transition">¿Quieres ser Organizador?</a>
+          <a href="#" class="hover:text-white transition">Contacto</a>
+        {% elif user.rol == 'asistente' %}
+          <a href="#" class="hover:text-white transition">Políticas de Privacidad</a>
+          <a href="#" class="hover:text-white transition">Términos de Servicio</a>
+          <a href="#" class="hover:text-white transition">Ayuda</a>
+        {% elif user.rol == 'organizador' %}
+          <a href="#" class="hover:text-white transition">Gestión de Eventos</a>
+          <a href="#" class="hover:text-white transition">Reportes Internos</a>
+          <a href="#" class="hover:text-white transition">Soporte Técnico</a>
+        {% endif %}
       </div>
     </div>
 

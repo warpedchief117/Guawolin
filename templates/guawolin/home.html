@@ -7,14 +7,21 @@
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
+{% block body_class %}home-page{% endblock %}
+
 {% block content %}
 <div class="halloween-page">
   <div class="overlay">
     <h1 class="event-title">Bienvenido al evento<br><em>El Baile de las Sombras</em></h1>
 
     <div class="button-group">
-      <a href="{% url 'register' %}" class="register-button">Registrarse</a>
-      <a href="{% url 'login' %}" class="login-button">Iniciar sesión</a>
+      {% if not user.is_authenticated %}
+        <a href="{% url 'register_assistant' %}" class="register-button">Registrarse</a>
+      {% else %}
+        <p class="text-white text-lg mt-4 text-center">
+          ¡Hola {{ user.first_name|default:user.username }}! Ya estás listo para disfrutar el evento 🎉
+        </p>
+      {% endif %}
     </div>
 
     <h2 class="countdown-title">Days to Halloween</h2>
