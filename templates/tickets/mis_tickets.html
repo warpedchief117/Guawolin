@@ -1,0 +1,20 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+
+  <div class="max-w-4xl mx-auto py-8">
+    <h1 class="text-2xl font-bold text-indigo-600 mb-4">Mis boletos</h1>
+    <p class="text-gray-700">Aquí puedes consultar los boletos que has adquirido para tus eventos.</p>
+
+    <!-- Lista de boletos -->
+    {#% for ticket in boletos %#}
+      <div class="mt-4 p-4 border rounded shadow">
+        <h2 class="font-semibold">{{ ticket.event_name }}</h2>
+        <p>Precio: ${{ ticket.price }}</p>
+        <p>Fecha de compra: {{ ticket.purchase_date }}</p>
+        <p>Confirmado: {{ ticket.is_confirmed|yesno:"Sí,No" }}</p>
+      </div>
+    {#% empty %#}
+      <p>No tienes boletos registrados.</p>
+    {#% endfor %#}
+  </div>
+{% endblock %}

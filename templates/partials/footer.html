@@ -1,0 +1,34 @@
+<footer class="bg-gray-900 text-gray-300 py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+      <!-- Información de marca -->
+      <div class="text-center md:text-left">
+        <h2 class="text-lg font-semibold text-white">Fiestapp</h2>
+        <p class="text-sm text-gray-400">Tu plataforma para eventos inolvidables.</p>
+      </div>
+
+      <!-- Enlaces rápidos -->
+      <div class="flex space-x-6">
+        {% if not user.is_authenticated %}
+          <a href="{% url 'home' %}" class="hover:text-white transition">Inicio</a>
+          <a href="{% url 'register_organizer' %}" class="hover:text-white transition">¿Quieres ser Organizador?</a>
+          <a href="#" class="hover:text-white transition">Contacto</a>
+        {% elif user.rol == 'asistente' %}
+          <a href="#" class="hover:text-white transition">Políticas de Privacidad</a>
+          <a href="#" class="hover:text-white transition">Términos de Servicio</a>
+          <a href="#" class="hover:text-white transition">Ayuda</a>
+        {% elif user.rol == 'organizador' %}
+          <a href="#" class="hover:text-white transition">Gestión de Eventos</a>
+          <a href="#" class="hover:text-white transition">Reportes Internos</a>
+          <a href="#" class="hover:text-white transition">Soporte Técnico</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-700 mt-6 pt-4 text-center text-sm text-gray-500">
+      © 2025 Ivan Rodriguez Mendoza — Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

@@ -1,64 +1,71 @@
+{% extends 'partials/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>El Baile de las Sombras</title>
+
+{% block title %}El Baile de las Sombras{% endblock %}
+
+{% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
-</head>
-<body class="halloween-page">
+{% endblock %}
+
+{% block body_class %}home-page{% endblock %}
+
+{% block content %}
+<div class="halloween-page">
   <div class="overlay">
     <h1 class="event-title">Bienvenido al evento<br><em>El Baile de las Sombras</em></h1>
-  
-    <div class="button-group">
-      <a href="{% url 'register' %}" class="register-button">Registrarse</a>
-      <a href="{% url 'login' %}" class="login-button">Iniciar sesión</a>
-    </div>
- 
 
-  <h2 class="countdown-title">Days to Halloween</h2>
-  <div class="flip-clock">
-  <div class="flip-unit" id="days">
-    <span class="label">Días</span>
-    <div class="digit">00</div>
-  </div>
-  <div class="flip-unit" id="hours">
-    <span class="label">Horas</span>
-    <div class="digit">00</div>
-  </div>
-  <div class="flip-unit" id="minutes">
-    <span class="label">Min</span>
-    <div class="digit">00</div>
-  </div>
-  <div class="flip-unit" id="seconds">
-    <span class="label">Seg</span>
-    <div class="digit">00</div>
+    <div class="button-group">
+      {% if not user.is_authenticated %}
+        <a href="{% url 'register_assistant' %}" class="register-button">Registrarse</a>
+      {% else %}
+        <p class="text-white text-lg mt-4 text-center">
+          ¡Hola {{ user.first_name|default:user.username }}! Ya estás listo para disfrutar el evento 🎉
+        </p>
+      {% endif %}
+    </div>
+
+    <h2 class="countdown-title">Days to Halloween</h2>
+    <div class="flip-clock">
+      <div class="flip-unit" id="days">
+        <span class="label">Días</span>
+        <div class="digit">00</div>
+      </div>
+      <div class="flip-unit" id="hours">
+        <span class="label">Horas</span>
+        <div class="digit">00</div>
+      </div>
+      <div class="flip-unit" id="minutes">
+        <span class="label">Min</span>
+        <div class="digit">00</div>
+      </div>
+      <div class="flip-unit" id="seconds">
+        <span class="label">Seg</span>
+        <div class="digit">00</div>
+      </div>
+    </div>
   </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script>
   const halloween = new Date("October 31, 2025 00:00:00").getTime();
-
   function updateClock() {
     const now = new Date().getTime();
     const distance = halloween - now;
-
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((distance / (1000 * 60)) % 60);
     const seconds = Math.floor((distance / 1000) % 60);
-
     flipTo("days", days);
     flipTo("hours", hours);
     flipTo("minutes", minutes);
     flipTo("seconds", seconds);
   }
-
   function flipTo(id, value) {
     const unit = document.getElementById(id);
     const digit = unit.querySelector(".digit");
     const current = digit.textContent;
-
     const formatted = String(value).padStart(2, "0");
     if (current !== formatted) {
       digit.classList.add("flip");
@@ -68,7 +75,6 @@
       }, 300);
     }
   }
-
   setInterval(updateClock, 1000);
 </script>
- </div>
+{% endblock %}
