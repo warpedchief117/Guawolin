@@ -1,0 +1,49 @@
+# 🐍 Archivos compilados de Python
+*.pyc                 # Archivos bytecode generados por Python (innecesarios en el repo)
+__pycache__/          # Carpeta donde Python guarda caché de módulos
+
+# 🐍 Entorno virtual
+venv/                 # Tu entorno virtual local (no se sube porque se recrea con requirements.txt)
+
+# 🗃️ Base de datos local
+db.sqlite3            # Archivo de base de datos SQLite (solo para desarrollo)
+
+# 🔐 Variables de entorno
+.env                  # Archivo con claves secretas y configuración (nunca se sube)
+
+
+
+# 📦 Archivos de paquetes y distribución
+*.egg                 # Paquetes Python en formato .egg
+*.egg-info/           # Info de paquetes generada por setuptools
+dist/                 # Carpeta de distribución (build final)
+build/                # Carpeta de construcción temporal
+
+# 🧪 Archivos de pruebas y logs
+*.log                 # Archivos de log generados por tu app
+*.pot                 # Archivos de traducción
+*.tmp                 # Archivos temporales
+
+# 🧠 Archivos de dependencias
+pip-log.txt           # Logs de instalación con pip
+pip-delete-this-directory.txt  # Archivo temporal de pip
+
+# 🧠 Archivos de configuración de IDEs
+.vscode/              # Configuración de Visual Studio Code
+.idea/                # Configuración de JetBrains (PyCharm, WebStorm)
+*.sublime-project     # Proyecto de Sublime Text
+*.sublime-workspace   # Workspace de Sublime Text
+
+# 🖥️ Archivos del sistema operativo
+.DS_Store             # Archivo oculto de macOS
+Thumbs.db             # Archivo oculto de Windows
+
+# 🧪 Archivos de pruebas unitarias (si usas coverage)
+htmlcov/              # Reportes HTML de cobertura
+.coverage             # Archivo de cobertura de tests
+.tox/                 # Carpeta de entorno de pruebas con tox
+
+# 🧪 Archivos de entorno de Docker (si usas)
+*.env.local           # Variables de entorno locales
+*.env.production      # Variables de entorno para producción
+docker-compose.override.yml  # Configuración local de Docker

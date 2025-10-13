@@ -6,7 +6,8 @@ from tickets import views
 
 
 urlpatterns = [
-    path('home/', views.home, name='home'),  # Esto hace que la raíz muestre tu pantalla principal
+    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),  # Esto hace que la raíz muestre tu pantalla principal
     path('admin/', admin.site.urls),
     path('tickets/', include('tickets.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='guawolin/login.html'), name='login'),
