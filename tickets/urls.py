@@ -8,5 +8,6 @@ urlpatterns = [
     path('mis_tickets/', views.my_tickets, name='my_tickets'),         # Asistente
     path('mis_eventos/', views.my_events, name='my_events'),
     path('eventos/', views.events, name='events'),           # Organizador
-    path('reportes/', views.reports, name='reports'),              
+    path('reportes/', views.reports, name='reports'), 
+    path('create/', views.create_event_view, name='create_event'),  # ✅   
 ]

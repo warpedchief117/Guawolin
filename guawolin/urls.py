@@ -6,8 +6,10 @@ from tickets import views
 
 
 urlpatterns = [
+    path('', views.home, name='home'), # ✅ Esto conecta la raíz con la vista 'home'
     path('home/', views.home, name='home'),  # Esto hace que la raíz muestre tu pantalla principal
     path('admin/', admin.site.urls),
+    path('eventos/', views.events, name='events'),
     path('tickets/', include('tickets.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='guawolin/login.html'), name='login'),
     path('profile/', views.profile_settings, name='profile_settings'),

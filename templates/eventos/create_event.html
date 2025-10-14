@@ -1,0 +1,30 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}Crear Evento – Guawolin{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/create_event.css' %}">
+{% endblock %}
+
+{% block body_class %}crear-evento-page{% endblock %}
+
+{% block content %}
+  <div class="mascara-icono">🎭</div>
+  <section class="crear-evento">
+    <h1 class="titulo-evento">Crear Nuevo Evento</h1>
+    <form method="post" enctype="multipart/form-data" class="form-evento">
+      {% csrf_token %}
+      <p><label for="id_titulo">Título:</label> {{ form.titulo }}</p>
+      <p><label for="id_descripcion">Descripción:</label> {{ form.descripcion }}</p>
+      <p><label for="id_fecha">Fecha:</label> {{ form.fecha }}</p>
+      <p><label for="id_lugar">Lugar:</label> {{ form.lugar }}</p>
+      <p><label for="id_imagen">Imagen:</label> {{ form.imagen }}</p>
+      <button type="submit" class="btn-guardar">Guardar Evento</button>
+    </form>
+    <a href="{% url 'home' %}" class="volver-link">← Volver al Dashboard</a>
+  </section>
+  
+{% endblock %}
+
+

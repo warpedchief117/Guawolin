@@ -6,6 +6,10 @@ from django.shortcuts import render
 from .forms import RegisterAssistantForm, RegisterOrganizerForm
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+from tickets import views
+from tickets.forms import EventoForm
+from .models import Evento
+
 
 def home(request):
     return render(request, 'guawolin/home.html')
@@ -98,3 +102,15 @@ def my_tickets(request):
 
 def events(request):
     return render(request, 'tickets/eventos.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')  # ✅ Asegúrate de que 'home' esté definida en urls.py
+  
+
+#view para crear eventos
+def create_event_view(request):
+    form = EventoForm()
+    return render(request, 'eventos/create_event.html', {'form': form})
+
+

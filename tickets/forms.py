@@ -1,5 +1,7 @@
 from django import forms
 from .models import Usuario
+from .models import Evento
+
 
 class RegisterAssistantForm(forms.ModelForm):
     password = forms.CharField(
@@ -44,3 +46,20 @@ class RegisterOrganizerForm(forms.ModelForm):
             'username': 'Usuario',
             'email': 'Correo electrónico',
         }
+
+class EventoForm(forms.ModelForm):
+    fecha = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'datetime-local' , 'class': 'input-fecha'})
+    )
+
+    class Meta:
+        model = Evento
+        fields = ['titulo', 'descripcion', 'fecha', 'lugar', 'imagen']
+
+
+
+def create_event_view(request):
+    form = EventoForm()
+    return render(request, 'tickets/create_event.html', {'form': form})
+
+
