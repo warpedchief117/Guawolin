@@ -6,6 +6,7 @@ from django.shortcuts import render
 from .forms import RegisterAssistantForm, RegisterOrganizerForm
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from tickets import views
 from tickets.forms import EventoForm
 from .models import Evento

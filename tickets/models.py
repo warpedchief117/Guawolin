@@ -22,7 +22,7 @@ class Evento(models.Model):
     fecha = models.DateTimeField()
     lugar = models.CharField(max_length=150)
     imagen = models.ImageField(upload_to='eventos/', blank=True, null=True)
-    organizador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='eventos_creados')  # ✅
+    organizador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True, related_name='eventos_creados')  # ✅
 
     def __str__(self):
         return self.titulo
