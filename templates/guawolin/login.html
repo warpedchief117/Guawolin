@@ -1,0 +1,30 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block content %}
+  <div class="overlay">
+    <div class="login-container">
+      <h2 class="text-2xl font-bold mb-4">Iniciar sesión</h2>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+          Entrar
+        </button>
+        <p class="register-legend mt-4">
+          ¿No tienes cuenta?
+          <a href="{% url 'register_assistant' %}" class="text-indigo-600 hover:underline">Regístrate</a>
+        </p>
+      </form>
+    </div>
+  </div> 
+{% endblock %}
+

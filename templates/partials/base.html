@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Comercializadora Modelo{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+  {% block extra_css %} <link rel="stylesheet" href="{% static 'css/base.css' %}">{% endblock %}
+</head>
+  <body class="{% block body_class %}default-bg{% endblock %}">
+  <!-- Navbar -->
+  {% include 'partials/navbar.html' %}
+
+  <!-- Mensajes (si usas messages framework) -->
+  {% if messages %}
+    <div class="container mx-auto mt-4">
+      {% for message in messages %}
+        <div class="p-4 mb-4 text-sm rounded {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Contenido principal -->
+  <main class="container mx-auto px-4 py-6">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include 'partials/footer.html' %}
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
