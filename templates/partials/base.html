@@ -5,13 +5,15 @@
   <meta charset="UTF-8">
   <title>{% block title %}Comercializadora Modelo{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.tailwindcss.com"></script>
-  {% block extra_css %} <link rel="stylesheet" href="{% static 'css/base.css' %}">{% endblock %}
+  <script src="https://cdn.tailwindcss.com"></script>
+  {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% endblock %}
 </head>
-  <body class="{% block body_class %}default-bg{% endblock %}">
+<body class="{% block body_class %}default-bg{% endblock %}">
+
   <!-- Navbar -->
   {% include 'partials/navbar.html' %}
-
   <!-- Mensajes (si usas messages framework) -->
   {% if messages %}
     <div class="container mx-auto mt-4">
@@ -22,15 +24,19 @@
       {% endfor %}
     </div>
   {% endif %}
-
   <!-- Contenido principal -->
   <main class="container mx-auto px-4 py-6">
     {% block content %}{% endblock %}
   </main>
-
   <!-- Footer -->
   {% include 'partials/footer.html' %}
 
   {% block extra_js %}{% endblock %}
+    <!-- Panel de asistente css -->
+  <link rel="stylesheet" href="{% static 'css/panel_asistente.css' %}">
+       <!-- Panel de organizador css -->
+  <link rel="stylesheet" href="{% static 'css/panel_organizador.css' %}">
+
 </body>
 </html>
+

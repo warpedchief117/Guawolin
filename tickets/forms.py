@@ -48,8 +48,9 @@ class RegisterOrganizerForm(forms.ModelForm):
         }
 
 class EventoForm(forms.ModelForm):
-    fecha = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'datetime-local' , 'class': 'input-fecha'})
+    fecha = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        input_formats=['%Y-%m-%dT%H:%M']  # 👈 Esto acepta el formato del navegador
     )
 
     class Meta:

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, User
 from django.conf import settings
 
+
 # Modelo personalizado de usuario
 class Usuario(AbstractUser):
     email = models.EmailField(unique=True)
@@ -22,7 +23,7 @@ class Evento(models.Model):
     fecha = models.DateTimeField()
     lugar = models.CharField(max_length=150)
     imagen = models.ImageField(upload_to='eventos/', blank=True, null=True)
-    organizador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True, related_name='eventos_creados')  # ✅
+    organizador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titulo
@@ -36,5 +37,16 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} – {self.evento.titulo}"
+
+# Modelo de Boleto
+class Boleto(models.Model):
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+    fecha_compra = models.DateTimeField(auto_now_add=True)
+    confirmado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.evento.nombre}"
 
 

@@ -1,0 +1,31 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>🎟️ Eventos disponibles</h2>
+  <a href="{% url 'mis_boletos' %}" class="btn btn-outline-secondary mt-3">Ver mis boletos</a>
+  {% if eventos %}
+    <div class="row">
+      {% for evento in eventos %}
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            {% if evento.imagen %}
+              <img src="{{ evento.imagen.url }}" class="card-img-top" alt="{{ evento.titulo }}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ evento.titulo }}</h5>
+              <p class="card-text">{{ evento.descripcion|truncatewords:20 }}</p>
+              <p><strong>Fecha:</strong> {{ evento.fecha|date:"d M Y H:i" }}</p>
+              <p><strong>Lugar:</strong> {{ evento.lugar }}</p>
+              <a href="{% url 'comprar_boleto' evento.id %}" class="btn btn-primary">Comprar boleto</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">No hay eventos disponibles en este momento.</div>
+  {% endif %}
+</div>
+{% endblock %}

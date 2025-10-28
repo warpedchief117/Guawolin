@@ -1,0 +1,14 @@
+{% extends 'partials/base.html' %}
+{% block title %}Detalle del Evento{% endblock %}
+
+{% block content %}
+  <h2>{{ evento.titulo }}</h2>
+  <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+  <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
+  <p><strong>Lugar:</strong> {{ evento.lugar }}</p>
+  {% if evento.imagen %}
+    <img src="{{ evento.imagen.url }}" alt="Imagen del evento" style="max-width: 400px;">
+  {% endif %}
+  <a href="{% url 'eliminar_evento' evento.id %}" class="btn btn-danger"> Eliminar evento</a>
+  <a href="{% url 'my_events' %}" class="btn btn-secondary">← Volver</a>
+{% endblock %}

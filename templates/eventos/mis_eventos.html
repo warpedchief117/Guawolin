@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}Mis eventos organizados{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/mis_eventos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="eventos-wrapper">
+  <h2>📋 Mis eventos organizados</h2>
+  <p>Total eventos encontrados: {{ eventos|length }}</p>
+
+  {% if eventos %}
+    <div class="eventos-grid">
+      {% for evento in eventos %}
+        <div class="evento-card">
+          <div class="evento-info">
+            <h3>{{ evento.titulo }}</h3>
+            <p>📅 {{ evento.fecha|date:"d M Y H:i" }}</p>
+            <p>📍 {{ evento.lugar }}</p>
+          </div>
+          <a href="{% url 'detalle_evento' evento.id %}" class="btn-detalles">Ver detalles</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="no-eventos">Aún no has creado eventos.</div>
+  {% endif %}
+</div>
+{% endblock %}
