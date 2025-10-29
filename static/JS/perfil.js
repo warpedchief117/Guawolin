@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const dropdown = document.getElementById('profileDropdown');
 
   if (profileBtn && dropdown) {
-    profileBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
+    profileBtn.addEventListener('click', function () {
       dropdown.classList.toggle('hidden');
     });
 
+    // Opcional: cerrar el dropdown si haces clic fuera
     document.addEventListener('click', function (e) {
       if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.add('hidden');
